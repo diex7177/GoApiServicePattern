@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"GoApiServicePattern/src/api/services"
+	"GoApiServicePattern/src/api/viewmodels"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,12 +15,12 @@ type StatusCheckController struct {
 //Ping ...
 func (controller *StatusCheckController) Ping(c *gin.Context) {
 	result, err := controller.GetStatusHealth()
+
 	if err != nil {
-		//Handle error
+		c.JSON(200, viewmodels.Message{Message: err.Error()})
 	}
 
-	c.JSON(200, gin.H{
-		"message": result,
-	})
+	vm := viewmodels.Message{Message: result}
 
+	c.JSON(200, vm)
 }
