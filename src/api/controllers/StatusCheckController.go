@@ -9,7 +9,7 @@ import (
 
 //StatusCheckController ...
 type StatusCheckController struct {
-	services.StatusCheckService
+	services.IStatusCheckService
 }
 
 //Ping ...
